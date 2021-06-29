@@ -43,7 +43,7 @@ Dark_gray = \e[1;90m
 White = \e[1;97m
 End = \e[1;0m
 
-all :	$(LIBFT) start $(NAME)
+all :	$(NAME)
 		@echo "$(Green)__________$(NAME) OK____________$(End)"
 
 $(LIBFT) :
@@ -56,7 +56,7 @@ $(DIR_BUILD)% :
 .SECONDEXPANSION:
 
 
-$(NAME) : $(OBJS)
+$(NAME) :$(LIBFT) start $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L $(LIBFT_DIR) -lft -L $(MLX_DIR) -lmlx -lm -lbsd -lX11 -lXext
 	@echo "$(Green)MAKE\033[5C->\033[5C$@$(End)"
 
