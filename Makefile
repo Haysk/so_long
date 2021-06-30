@@ -1,8 +1,20 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/06/29 17:42:20 by adylewsk          #+#    #+#              #
+#    Updated: 2021/06/30 01:47:32 by adylewsk         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = so_long
 
 # Compile
 
-CC = clang
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 BUFFER = 64
 
@@ -25,8 +37,7 @@ DIR_HEADERS = headers/
 
 SRCS_SO_LONG = main.c \
 		error/error.c \
-		utils/utils.c utils/utils_ft.c \
-		close.c file.c initialize.c settings.c parsing.c
+		initialize.c file.c map.c component.c minilib.c close.c
 SRCS = $(addprefix $(DIR_SRCS), $(SRCS_SO_LONG:.c=.o))
 
 OBJS = $(addprefix $(DIR_BUILD), $(patsubst %.c,%.o,$(SRCS)))

@@ -6,7 +6,7 @@
 #    By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 11:27:17 by adylewsk          #+#    #+#              #
-#    Updated: 2021/06/28 19:15:56 by adylewsk         ###   ########.fr        #
+#    Updated: 2021/06/29 13:58:03 by adylewsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,7 @@ $(BUILD_DIR)%/ :
 
 $(NAME) :$(OBJS)
 	@echo "$(Yellow)Compilation Finished$(End)"
+	@rm -rf $(NAME)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 	@echo "$(Green)$@ Created$(End)"

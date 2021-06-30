@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 18:09:12 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/06/03 19:06:44 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/06/29 14:09:11 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_puttab(char **tab)
 	i = 0;
 	while (*tab)
 	{
-		ft_printf("%i : %s\n", i, *tab);
+		ft_printf("%4i : %s\n", i, *tab);
 		tab++;
 		i++;
 	}
