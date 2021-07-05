@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:20:38 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/06/30 20:39:56 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/05 15:12:10 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	start()
 {
 	void	*mlx;
 	void	*mlx_win;
-	char	*relative_path = "/home/adylewsk/Project/WIP/so_long/sprites/perso.xpm";
+	char	*relative_path = "sprites/perso.xpm";
 	// int		img_width;
 	// int		img_height;
 	t_data	img;
