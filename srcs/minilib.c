@@ -6,17 +6,29 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:20:38 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/06/30 03:33:10 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/06/30 20:39:56 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/so_long.h"
 
+// int	init_components(t_components components)
+// {
+// 	char	*perso;
+// 	char	*collect;
+// 	char	*exit;
+// 	char	*space;
+// 	char	*wall;
+
+
+// 	return (TRUE);
+// }
+
 int	start()
 {
 	void	*mlx;
 	void	*mlx_win;
-	char	*relative_path = "/home/adylewsk/Project/WIP/so_long/sprites/exit.xpm";
+	char	*relative_path = "/home/adylewsk/Project/WIP/so_long/sprites/perso.xpm";
 	// int		img_width;
 	// int		img_height;
 	t_data	img;

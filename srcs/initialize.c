@@ -6,24 +6,26 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 01:47:17 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/06/29 18:32:27 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/06/30 20:39:17 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/so_long.h"
 
-t_map	init_map(void)
+void	init_map(t_map *map, t_components *components)
 {
-	t_map	map;
-
-	map.len.x = 0;
-	map.len.y = 0;
-	map.P.x = -1;
-	map.P.y = -1;
-	map.C.x = -1;
-	map.C.y = -1;
-	map.E.x = -1;
-	map.E.y = -1;
-	map.tab = NULL;
-	return (map);
+	map->len.x = 0;
+	map->len.y = 0;
+	map->tab = NULL;
+	components->P.pos.x = -1;
+	components->P.pos.y = -1;
+	components->C.pos.x = -1;
+	components->C.pos.y = -1;
+	components->E.pos.x = -1;
+	components->E.pos.y = -1;
 }
+
+// t_map	init_comp(t_map map, void *mlx)
+// {
+// 	map.P.img.img = mlx_xpm_file_to_image(mlx, );
+// }

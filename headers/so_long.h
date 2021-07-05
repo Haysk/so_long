@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 19:31:37 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/06/29 20:38:49 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/06/30 20:38:24 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 # include "structs.h"
 
 int		open_file(char *path, char *extension);
-t_map	init_map(void);
+void	init_map(t_map *map, t_components *components);
 void	map_len(char *file, int *x, int *y);
 int		map_set(t_map *map, char *file);
-int		map_check(t_map *map);
-int		add_comp(t_pos *comp, int x, int y);
+int		map_check(t_map *map, t_components *comps);
+int		add_comp(t_comp *comp, int x, int y);
 
 int		start();
 

@@ -6,41 +6,43 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 19:32:33 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/06/29 20:39:06 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/06/30 20:03:26 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/so_long.h"
 
-void	map_put(t_map map)
+void	map_put(t_map map, t_components comp)
 {
 	ft_puttab(map.tab);
 	ft_printf("map.len.x : %i\n", map.len.x);
 	ft_printf("map.len.y : %i\n", map.len.y);
-	ft_printf("map.P.x : %i\n", map.P.x);
-	ft_printf("map.P.y : %i\n", map.P.y);
-	ft_printf("map.C.x : %i\n", map.C.x);
-	ft_printf("map.C.y : %i\n", map.C.y);
-	ft_printf("map.E.x : %i\n", map.E.x);
-	ft_printf("map.E.y : %i\n", map.E.y);
+	ft_printf("comp.P.x : %i\n", comp.P.pos.x);
+	ft_printf("comp.P.y : %i\n", comp.P.pos.y);
+	ft_printf("comp.C.x : %i\n", comp.C.pos.x);
+	ft_printf("comp.C.y : %i\n", comp.C.pos.y);
+	ft_printf("comp.E.x : %i\n", comp.E.pos.x);
+	ft_printf("comp.E.y : %i\n", comp.E.pos.y);
 }
 
-void	get_map(t_map *map, char *file)
+void	get_map( char *file, t_map *map, t_components *comp)
 {
-	*map = init_map();
 	map_len(file, &map->len.x, &map->len.y);
 	map_set(map, file);
-	map_check(map);
+	map_put(*map, *comp);
+	// map_check(map);
 }
 
 int	main(int argc, char **argv)
 {
 	t_map	map;
+	t_components comp;
 
 	if (argc == 2)
-	{
-		get_map(&map, argv[1]);
-		map_put(map);
+	{	
+		init_map(&map, &comp);
+		get_map(argv[1], &map, &comp);
+		// map_put(map);
 		start();
 		free_tab(map.tab);
 		return (EXIT_SUCCESS);

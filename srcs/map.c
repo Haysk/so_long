@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 22:43:04 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/06/29 20:31:18 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/06/30 20:38:03 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,16 @@ int	map_borders(t_map map, int y)
 	return (TRUE);
 }
 
-int	map_component(t_map *map, int y)
+int	map_component(t_components *comps, t_map *map, int y)
 {
 	int	x;
 
 	x = 0;
 	while (map->tab[y][x])
 	{
-		if ((map->tab[y][x] == 'P' && add_comp(&map->P, x, y) == FALSE)
-			|| (map->tab[y][x] == 'C' && add_comp(&map->C, x, y) == FALSE)
-			|| (map->tab[y][x] == 'E' && add_comp(&map->E, x, y) == FALSE)
+		if ((map->tab[y][x] == 'P' && add_comp(&comps->P, x, y) == FALSE)
+			|| (map->tab[y][x] == 'C' && add_comp(&comps->C, x, y) == FALSE)
+			|| (map->tab[y][x] == 'E' && add_comp(&comps->E, x, y) == FALSE)
 			|| (!ft_strrchr("PCE10", map->tab[y][x])))
 			return (FALSE);
 		if (ft_strrchr("PCE", map->tab[y][x]))
@@ -94,7 +94,7 @@ int	map_component(t_map *map, int y)
 	return (TRUE);
 }
 
-int	map_check(t_map *map)
+int	map_check(t_map *map, t_components *comps)
 {
 	int	y;
 
@@ -103,11 +103,11 @@ int	map_check(t_map *map)
 	{
 		if (!map_borders(*map, y))
 			my_close(map, 4, 0);
-		if (!map_component(map, y))
+		if (!map_component(comps, map, y))
 			my_close(map, 5, 0);
 		y++;
 	}
-	if (map->P.x < 0 || map->C.x < 0 || map->E.x < 0)
+	if (comps->P.pos.x < 0 || comps->C.pos.x < 0 || comps->E.pos.x < 0)
 		my_close(map, 5, 0);
 	return (TRUE);
 }
