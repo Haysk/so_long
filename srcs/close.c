@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 16:35:36 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/06/29 19:29:29 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/07 01:53:19 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,16 @@ int	free_tab(char **tab)
 	return (TRUE);
 }
 
-void	my_close(t_map *map, int error, char *str)
+void	close_map(t_map *map, int error, char *str)
 {
 	free_tab(map->tab);
+	exit(my_error(error, str));
+}
+
+void	close_data(t_data *data, int error, char *str)
+{
+	free_tab(data->map.tab);
+	if (data->mlx.win.ptr)
+		mlx_destroy_window(data->mlx.ptr, data->mlx.win.ptr);
 	exit(my_error(error, str));
 }

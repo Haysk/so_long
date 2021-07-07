@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 16:33:49 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/06/29 19:22:00 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/06 16:28:37 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	my_error(int error, char *str)
 {
+	if (error == 0)
+		return (EXIT_SUCCESS);
 	if (error == 1)
 		printf("ERROR\nArgument : ./so_long filename.ber\n");
 	if (error == 2)
@@ -25,6 +27,8 @@ int	my_error(int error, char *str)
 	if (error == 5)
 		printf("ERROR\nmap : only walls (1), free space (0) " \
 		"one player (P), exit (E) and collectible (C)\n");
+	if (error == 6)
+		printf("ERROR\nmap : to long\n");
 	if (error == 99)
 		printf("%s\n", str);
 	return (EXIT_FAILURE);
