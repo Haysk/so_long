@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:20:38 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/07 01:56:46 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/07 02:12:19 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	img_to_bg(t_image *img, t_image *bg, int x, int y)
 		j = 0;
 		while (j < img->with)
 		{
-			if (img->addr[i * img->line_length / 4 + j] > 0)
+			if (img->addr[i * img->line_length / 4 + j] >= 0)
 				bg->addr[(i + y) * bg->line_length / 4 + (j + x)] = img->addr[i * img->line_length / 4 + j];
 			j++;
 		}
