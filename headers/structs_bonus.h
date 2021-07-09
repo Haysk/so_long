@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 22:05:32 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/10 00:26:48 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/10 00:30:10 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_images
 	t_image	p;
 	t_image	c;
 	t_image	e;
+	t_image	en; //enemie
 }				t_images;
 
 typedef struct s_data
