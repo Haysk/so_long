@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 16:35:36 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/07 01:53:19 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/08 04:15:53 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,29 @@ void	close_map(t_map *map, int error, char *str)
 	exit(my_error(error, str));
 }
 
-void	close_data(t_data *data, int error, char *str)
+int	close_mlx(t_data *data, int error)
 {
-	free_tab(data->map.tab);
-	if (data->mlx.win.ptr)
-		mlx_destroy_window(data->mlx.ptr, data->mlx.win.ptr);
-	exit(my_error(error, str));
+	if (data->imgs.w.img)
+		mlx_destroy_image(data->mlx, data->imgs.w.img);
+	if (data->imgs.s.img)
+		mlx_destroy_image(data->mlx, data->imgs.s.img);
+	if (data->imgs.p.img)
+		mlx_destroy_image(data->mlx, data->imgs.p.img);
+	if (data->imgs.c.img)
+		mlx_destroy_image(data->mlx, data->imgs.c.img);
+	if (data->imgs.e.img)
+		mlx_destroy_image(data->mlx, data->imgs.e.img);
+	if (data->imgs.bg.img)
+		mlx_destroy_image(data->mlx, data->imgs.bg.img);
+	if (data->win)
+		mlx_destroy_window(data->mlx, data->win);
+	printf("close\n");
+	if (data->mlx)
+	{
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+	}
+	if (data->map.tab)
+		free_tab(data->map.tab);
+	return (error);
 }

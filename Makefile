@@ -6,7 +6,7 @@
 #    By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/29 17:42:20 by adylewsk          #+#    #+#              #
-#    Updated: 2021/06/30 01:47:32 by adylewsk         ###   ########.fr        #
+#    Updated: 2021/07/08 18:26:15 by adylewsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = so_long
 # Compile
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
 BUFFER = 64
 
 # MINILIBX
@@ -37,7 +37,7 @@ DIR_HEADERS = headers/
 
 SRCS_SO_LONG = main.c \
 		error/error.c \
-		initialize.c file.c map.c component.c minilib.c close.c
+		initialize.c file.c map.c minilib.c move.c close.c
 SRCS = $(addprefix $(DIR_SRCS), $(SRCS_SO_LONG:.c=.o))
 
 OBJS = $(addprefix $(DIR_BUILD), $(patsubst %.c,%.o,$(SRCS)))

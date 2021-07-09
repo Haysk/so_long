@@ -6,22 +6,17 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 22:05:32 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/07 01:51:15 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/09 01:36:59 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-// typedef struct s_pos
-// {
-// 	int		x;
-// 	int		y;
-// }				t_pos;
-
-typedef struct	s_image {
+typedef struct s_image {
 	void	*img;
 	int		*addr;
+	int		anim;
 	int		with;
 	int		height;
 	int		bits_per_pixel;
@@ -37,31 +32,17 @@ typedef struct s_pos
 
 typedef struct s_components
 {
-	t_pos	p;
-	t_pos	c;
-	t_pos	e;
+	int	p;
+	int	c;
+	int	e;
 }				t_components;
 
 typedef struct s_map
 {
 	int		lenx;
 	int		leny;
-	t_image	**imgs;
 	char	**tab;
 }				t_map;
-
-typedef struct s_window
-{
-	int		lenx;
-	int		leny;
-	void	*ptr;
-}				t_window;
-
-typedef struct s_mlx
-{
-	void		*ptr;
-	t_window	win;
-}				t_mlx;
 
 typedef struct s_images
 {
@@ -75,7 +56,12 @@ typedef struct s_images
 
 typedef struct s_data
 {
-	t_mlx			mlx;
+	void			*mlx;
+	void			*win;
+	int				width;
+	int				heigth;
+	int				moves;
+	t_pos			perso;
 	t_map			map;
 	t_components	comps;
 	t_images		imgs;

@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 22:43:04 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/07 01:53:07 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/09 02:01:30 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,24 @@ void	map_len(char *file, t_map *map)
 {
 	char	*line;
 	int		fd;
-	size_t	len;
+	int		len;
 
 	line = NULL;
 	fd = open_file(file, ".ber");
 	len = 0;
-	while (get_next_line(fd, &line) && (size_t)map->lenx == len)
+	while (get_next_line(fd, &line))
 	{
-		len = ft_strlen(line);
 		if (map->leny == 0)
-			map->lenx = (int)len;
+			map->lenx = (int)ft_strlen(line);
+		if (ft_strlen(line) != (size_t)map->lenx)
+			len++;
 		map->leny += 1;
 		free(line);
 	}
 	free(line);
 	close(fd);
-	if ((size_t)map->lenx != len)
-		exit(my_error(99, "ERROR\nmap : rectangular"));
+	if (len)
+		exit(my_error(6, NULL));
 }
 
 int	map_set(t_map *map, char *file)
@@ -75,39 +76,44 @@ int	map_borders(t_map map, int y)
 	return (TRUE);
 }
 
-int	map_component(t_components *comps, t_map *map, int y)
+int	map_component(t_data *data, int y)
 {
 	int	x;
 
 	x = 0;
-	while (map->tab[y][x])
+	while (data->map.tab[y][x])
 	{
-		if ((map->tab[y][x] == 'P' && add_comp(&comps->p, x, y) == FALSE)
-			|| (map->tab[y][x] == 'C' && add_comp(&comps->c, x, y) == FALSE)
-			|| (map->tab[y][x] == 'E' && add_comp(&comps->e, x, y) == FALSE)
-			|| (!ft_strrchr("PCE10", map->tab[y][x])))
+		if (data->map.tab[y][x] == 'P')
+		{
+			data->perso.x = x;
+			data->perso.y = y;
+			data->comps.p++;
+		}
+		else if (data->map.tab[y][x] == 'C')
+			data->comps.c++;
+		else if (data->map.tab[y][x] == 'E')
+			data->comps.e++;
+		else if (!ft_strrchr("PCE10", data->map.tab[y][x]))
 			return (FALSE);
-		if (ft_strrchr("PCE", map->tab[y][x]))
-			map->tab[y][x] = '0';
 		x++;
 	}
 	return (TRUE);
 }
 
-int	map_check(t_map *map, t_components *comps)
+int	map_check(t_data *data)
 {
 	int	y;
 
 	y = 0;
-	while (y < map->leny)
+	while (y < data->map.leny)
 	{
-		if (!map_borders(*map, y))
-			close_map(map, 4, 0);
-		if (!map_component(comps, map, y))
-			close_map(map, 5, 0);
+		if (!map_borders(data->map, y))
+			close_map(&data->map, 4, 0);
+		if (!map_component(data, y))
+			close_map(&data->map, 5, 0);
 		y++;
 	}
-	if (comps->p.x < 0 || comps->c.x < 0 || comps->e.x < 0)
-		close_map(map, 5, 0);
+	if (data->comps.p != 1 || data->comps.c != 1 || data->comps.e != 1)
+		close_map(&data->map, 5, 0);
 	return (TRUE);
 }

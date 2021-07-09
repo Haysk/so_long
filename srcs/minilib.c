@@ -6,118 +6,67 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:20:38 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/07 02:12:19 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/09 02:01:17 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/so_long.h"
 
-void	*window_set(t_mlx *mlx, t_map map)
-{
-	int	screenx;
-	int	screeny;
-
-	mlx_get_screen_size(mlx->ptr, &screenx, &screeny);
-	if (screenx < map.lenx * 50 || screeny < map.leny * 50)
-		return (NULL);
-	mlx->win.lenx = map.lenx * 50;
-	mlx->win.leny = map.leny * 50;
-	return (mlx_new_window(mlx->ptr, mlx->win.lenx, mlx->win.leny, "so_long"));
-
-}
-
-void	images_set(t_data *data, t_images *imgs)
-{
-	imgs->bg.img = mlx_new_image(data->mlx.ptr, data->mlx.win.lenx,
-					data->mlx.win.leny);
-	imgs->bg.addr = (int *)mlx_get_data_addr(imgs->bg.img, &imgs->bg.bits_per_pixel,
-					&imgs->bg.line_length, &imgs->bg.endian);
-	imgs->w.img = mlx_xpm_file_to_image(data->mlx.ptr, "sprites/wall.xpm",
-					&imgs->w.with, &imgs->w.height);
-	imgs->w.addr = (int *)mlx_get_data_addr(imgs->w.img, &imgs->w.bits_per_pixel,
-					&imgs->w.line_length, &imgs->w.endian);
-	imgs->s.img = mlx_xpm_file_to_image(data->mlx.ptr, "sprites/space.xpm",
-					&imgs->s.with, &imgs->s.height);
-	imgs->s.addr = (int *)mlx_get_data_addr(imgs->s.img, &imgs->s.bits_per_pixel,
-					&imgs->s.line_length, &imgs->s.endian);
-	imgs->p.img = mlx_xpm_file_to_image(data->mlx.ptr, "sprites/perso.xpm",
-					&imgs->p.with, &imgs->p.height);
-	imgs->p.addr = (int *)mlx_get_data_addr(imgs->p.img, &imgs->p.bits_per_pixel,
-					&imgs->p.line_length, &imgs->p.endian);
-	imgs->c.img = mlx_xpm_file_to_image(data->mlx.ptr, "sprites/collect.xpm",
-					&imgs->c.with, &imgs->c.height);
-	imgs->c.addr = (int *)mlx_get_data_addr(imgs->c.img, &imgs->c.bits_per_pixel,
-					&imgs->c.line_length, &imgs->c.endian);
-	imgs->e.img = mlx_xpm_file_to_image(data->mlx.ptr, "sprites/exit.xpm",
-					&imgs->e.with, &imgs->e.height);
-	imgs->e.addr = (int *)mlx_get_data_addr(imgs->e.img, &imgs->e.bits_per_pixel,
-					&imgs->e.line_length, &imgs->e.endian);
-}
-
-void	img_to_bg(t_image *img, t_image *bg, int x, int y)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < img->height)
+int	display_map(t_data *data)
+{	
+	if (data->imgs.bg.img)
 	{
-		j = 0;
-		while (j < img->with)
-		{
-			if (img->addr[i * img->line_length / 4 + j] >= 0)
-				bg->addr[(i + y) * bg->line_length / 4 + (j + x)] = img->addr[i * img->line_length / 4 + j];
-			j++;
-		}
-		i++;
+		mlx_destroy_image(data->mlx, data->imgs.bg.img);
+		data->imgs.bg.img = NULL;
 	}
+	data->imgs.bg.img = mlx_new_image(data->mlx, data->width,
+			data->heigth);
+	data->imgs.bg.addr = (int *)mlx_get_data_addr(data->imgs.bg.img,
+			&data->imgs.bg.bits_per_pixel, &data->imgs.bg.line_length,
+			&data->imgs.bg.endian);
+	set_bg(data);
+	mlx_put_image_to_window(data->mlx, data->win,
+		data->imgs.bg.img, 0, 0);
+	return (0);
 }
 
-int	map_display(t_data *data, t_images *imgs)
+int	keypress(int key, t_data *data)
 {
-	int		y;
-	int		x;
+	int	move;
 
-	y = 0;
-	while (data->map.tab[y])
+	move = 0;
+	if (key == 119)
+		move = move_up(data);
+	else if (key == 115)
+		move = move_down(data);
+	else if (key == 97)
+		move = move_left(data);
+	else if (key == 100)
+		move = move_right(data);
+	else if (key == 65307)
+		exit(my_error(close_mlx(data, 0), NULL));
+	if (move == 1)
 	{
-		x = 0;
-		while (data->map.tab[y][x])
-		{	
-			if (data->map.tab[y][x] == '1')
-				img_to_bg(&imgs->w, &imgs->bg, x * 50, y * 50);
-			else
-				img_to_bg(&imgs->s, &imgs->bg, x * 50, y * 50);
-			if (y == data->comps.p.y && x == data->comps.p.x)
-				img_to_bg(&imgs->p, &imgs->bg, x * 50, y * 50);
-			else if (y == data->comps.c.y && x == data->comps.c.x)
-				img_to_bg(&imgs->c, &imgs->bg, x * 50, y * 50);
-			else if (y == data->comps.e.y && x == data->comps.e.x)
-				img_to_bg(&imgs->e, &imgs->bg, x * 50, y * 50);
-			x++;
-		}
-		y++;
+		display_map(data);
+		data->moves += 1;
+		ft_printf("%i\n", data->moves);
 	}
-	return (1);
+	return (0);
+}
+
+int	close_so_long(t_data *data)
+{
+	exit(my_error(close_mlx(data, 0), NULL));
 }
 
 int	start(t_data *data)
 {
-	t_images	imgs;
-	
-	data->mlx.win.ptr = window_set(&data->mlx, data->map);
-	images_set(data, &imgs);
-	if (data->mlx.win.ptr == NULL)
-		close_data(data, 6, 0);
-	map_display(data, &imgs);
-	// img_to_bg(&imgs.p, &imgs.bg, 150, 100);
-	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win.ptr,
-	imgs.bg.img, 0, 0);
-	mlx_loop(data->mlx.ptr);
-	mlx_destroy_image(data->mlx.ptr, imgs.w.img);
-	mlx_destroy_image(data->mlx.ptr, imgs.s.img);
-	mlx_destroy_image(data->mlx.ptr, imgs.p.img);
-	mlx_destroy_image(data->mlx.ptr, imgs.bg.img);
-	mlx_destroy_window(data->mlx.ptr, data->mlx.win.ptr);
+	data->mlx = mlx_init();
+	data->win = window_set(data);
+	images_set(data, &data->imgs);
+	display_map(data);
+	mlx_hook(data->win, 33, 1L << 5, close_so_long, data);
+	mlx_hook(data->win, 2, 1L << 0, keypress, data);
+	mlx_loop(data->mlx);
 	return (TRUE);
 }
