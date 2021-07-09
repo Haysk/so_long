@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 15:08:53 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/06/03 19:14:05 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/09 15:49:30 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ char	*ft_itoa(int n)
 	if (!str)
 		return (0);
 	if (save == 0)
-		return ("0");
+	{
+		str[0] = '0';
+		return (str);
+	}
 	if (save < 0)
 	{
 		str[0] = '-';

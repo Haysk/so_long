@@ -6,7 +6,7 @@
 #    By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/29 17:42:20 by adylewsk          #+#    #+#              #
-#    Updated: 2021/07/09 02:25:33 by adylewsk         ###   ########.fr        #
+#    Updated: 2021/07/09 15:30:27 by adylewsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,10 +37,11 @@ DIR_HEADERS = headers/
 
 
 SRCS_SO_LONG = main.c error.c \
-		initialize.c file.c map.c minilib.c move.c close.c
+		initialize.c file.c map.c minilib.c image.c move.c close.c
 
 SRCS_SO_LONG_BONUS = main_bonus.c error_bonus.c \
-		initialize_bonus.c file_bonus.c map_bonus.c minilib_bonus.c move_bonus.c close_bonus.c
+		initialize_bonus.c file_bonus.c map_bonus.c minilib_bonus.c \
+		image_bonus.c move_bonus.c close_bonus.c
 
 SRCS = $(addprefix $(DIR_SRCS), $(SRCS_SO_LONG:.c=.o))
 

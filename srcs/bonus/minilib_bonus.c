@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minilib.c                                          :+:      :+:    :+:   */
+/*   minilib_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:20:38 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/09 02:01:17 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/09 15:50:43 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/so_long.h"
+#include "../headers/so_long_bonus.h"
 
 int	display_map(t_data *data)
 {	
+	char *str;
+
+	str = ft_itoa(data->moves);
 	if (data->imgs.bg.img)
 	{
 		mlx_destroy_image(data->mlx, data->imgs.bg.img);
@@ -27,6 +30,9 @@ int	display_map(t_data *data)
 	set_bg(data);
 	mlx_put_image_to_window(data->mlx, data->win,
 		data->imgs.bg.img, 0, 0);
+	mlx_string_put(data->mlx, data->win, 10, 20, 0xFFFFFF, str);
+	if (str)
+		free(str);
 	return (0);
 }
 
@@ -47,8 +53,8 @@ int	keypress(int key, t_data *data)
 		exit(my_error(close_mlx(data, 0), NULL));
 	if (move == 1)
 	{
-		display_map(data);
 		data->moves += 1;
+		display_map(data);
 		ft_printf("%i\n", data->moves);
 	}
 	return (0);
@@ -64,7 +70,8 @@ int	start(t_data *data)
 	data->mlx = mlx_init();
 	data->win = window_set(data);
 	images_set(data, &data->imgs);
-	display_map(data);
+	mlx_do_sync(data->mlx);
+	mlx_loop_hook(data->mlx, display_map, data);
 	mlx_hook(data->win, 33, 1L << 5, close_so_long, data);
 	mlx_hook(data->win, 2, 1L << 0, keypress, data);
 	mlx_loop(data->mlx);

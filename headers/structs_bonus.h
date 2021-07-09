@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structs.h                                          :+:      :+:    :+:   */
+/*   structs_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 22:05:32 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/09 14:16:01 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/09 14:18:09 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 typedef struct s_image {
 	void	*img;
 	int		*addr;
+	int		anim;
+	int		time;
 	int		with;
 	int		height;
 	int		bits_per_pixel;

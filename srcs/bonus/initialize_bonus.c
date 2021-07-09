@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize.c                                       :+:      :+:    :+:   */
+/*   initialize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 01:47:17 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/09 01:42:40 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/09 15:57:17 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/so_long.h"
+#include "../headers/so_long_bonus.h"
 
 void	data_init(t_data *data)
 {	
@@ -26,8 +26,12 @@ void	data_init(t_data *data)
 	data->comps.c = 0;
 	data->comps.e = 0;
 	data->imgs.c.img = NULL;
+	data->imgs.c.anim = 0;
+	data->imgs.c.time = 0;
 	data->imgs.e.img = NULL;
 	data->imgs.p.img = NULL;
+	data->imgs.p.anim = 0;
+	data->imgs.p.time = 0;
 	data->imgs.s.img = NULL;
 	data->imgs.w.img = NULL;
 	data->imgs.bg.img = NULL;
@@ -43,11 +47,11 @@ void	images_set(t_data *data, t_images *imgs)
 			&imgs->s.with, &imgs->s.height);
 	imgs->s.addr = (int *)mlx_get_data_addr(imgs->s.img,
 			&imgs->s.bits_per_pixel, &imgs->s.line_length, &imgs->s.endian);
-	imgs->p.img = mlx_xpm_file_to_image(data->mlx, "sprites/perso.xpm",
+	imgs->p.img = mlx_xpm_file_to_image(data->mlx, "sprites/perso anim.xpm",
 			&imgs->p.with, &imgs->p.height);
 	imgs->p.addr = (int *)mlx_get_data_addr(imgs->p.img,
 			&imgs->p.bits_per_pixel, &imgs->p.line_length, &imgs->p.endian);
-	imgs->c.img = mlx_xpm_file_to_image(data->mlx, "sprites/collect.xpm",
+	imgs->c.img = mlx_xpm_file_to_image(data->mlx, "sprites/key anim.xpm",
 			&imgs->c.with, &imgs->c.height);
 	imgs->c.addr = (int *)mlx_get_data_addr(imgs->c.img,
 			&imgs->c.bits_per_pixel, &imgs->c.line_length, &imgs->c.endian);
@@ -68,52 +72,4 @@ void	*window_set(t_data *data)
 	data->width = data->map.lenx * 50;
 	data->heigth = data->map.leny * 50;
 	return (mlx_new_window(data->mlx, data->width, data->heigth, "so_long"));
-}
-
-void	img_to_bg(t_image *img, t_image *bg, int x, int y)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < img->height)
-	{
-		j = 0;
-		while (j < img->with)
-		{
-			if (img->addr[i * img->line_length / 4 + j] >= 0)
-				bg->addr[((i + y) * bg->line_length) / 4 + (j + x)]
-					= img->addr[i * img->line_length / 4 + j];
-			j++;
-		}
-		i++;
-	}
-}
-
-int	set_bg(t_data *data)
-{
-	int		y;
-	int		x;
-
-	y = 0;
-	while (data->map.tab[y])
-	{
-		x = 0;
-		while (data->map.tab[y][x])
-		{	
-			if (data->map.tab[y][x] == '1')
-				img_to_bg(&data->imgs.w, &data->imgs.bg, x * 50, y * 50);
-			else
-				img_to_bg(&data->imgs.s, &data->imgs.bg, x * 50, y * 50);
-			if (data->map.tab[y][x] == 'P')
-				img_to_bg(&data->imgs.p, &data->imgs.bg, x * 50, y * 50);
-			else if (data->map.tab[y][x] == 'C')
-				img_to_bg(&data->imgs.c, &data->imgs.bg, x * 50, y * 50);
-			else if (data->map.tab[y][x] == 'E')
-				img_to_bg(&data->imgs.e, &data->imgs.bg, x * 50, y * 50);
-			x++;
-		}
-		y++;
-	}
-	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 16:35:36 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/08 04:15:53 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/09 16:34:45 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	close_mlx(t_data *data, int error)
 		mlx_destroy_image(data->mlx, data->imgs.bg.img);
 	if (data->win)
 		mlx_destroy_window(data->mlx, data->win);
-	printf("close\n");
 	if (data->mlx)
 	{
 		mlx_destroy_display(data->mlx);
