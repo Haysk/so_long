@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 22:43:04 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/09 02:01:30 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/10 00:15:50 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	map_check(t_data *data)
 			close_map(&data->map, 5, 0);
 		y++;
 	}
-	if (data->comps.p != 1 || data->comps.c != 1 || data->comps.e != 1)
+	if (data->comps.p != 1 || data->comps.c == 0 || data->comps.e == 0)
 		close_map(&data->map, 5, 0);
 	return (TRUE);
 }

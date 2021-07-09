@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 16:33:49 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/08 18:16:38 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/10 00:20:37 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	my_error(int error, char *str)
 	if (error == 4)
 		printf("ERROR\nmap : closed/surrounded by walls\n");
 	if (error == 5)
-		printf("ERROR\nmap : only walls (1), free space (0), " \
-		"one player (P), one exit (E) and one collectible (C)\n");
+		printf("ERROR\nmap : only walls (1), free spaces (0), " \
+		"one player (P), exit(s) (E) and collectible(s) (C)\n");
 	if (error == 6)
 		ft_printf("ERROR\nmap : rectangular\n");
 	if (error == 7)
