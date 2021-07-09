@@ -6,7 +6,7 @@
 #    By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/29 17:42:20 by adylewsk          #+#    #+#              #
-#    Updated: 2021/07/08 18:26:15 by adylewsk         ###   ########.fr        #
+#    Updated: 2021/07/09 02:25:33 by adylewsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ BUFFER = 64
 # MINILIBX
 
 MLX_DIR = minilibx-linux
-MLX = libmlx.a
+MLX = libmlx_linux.a
 
 # LIBFT
 
@@ -32,15 +32,23 @@ LIBFT = libft.a
 
 DIR_BUILD = build/
 DIR_SRCS = srcs/
+DIR_SRCS_BONUS = srcs/bonus/
 DIR_HEADERS = headers/
 
 
-SRCS_SO_LONG = main.c \
-		error/error.c \
+SRCS_SO_LONG = main.c error.c \
 		initialize.c file.c map.c minilib.c move.c close.c
+
+SRCS_SO_LONG_BONUS = main_bonus.c error_bonus.c \
+		initialize_bonus.c file_bonus.c map_bonus.c minilib_bonus.c move_bonus.c close_bonus.c
+
 SRCS = $(addprefix $(DIR_SRCS), $(SRCS_SO_LONG:.c=.o))
 
+SRCS_BONUS = $(addprefix $(DIR_SRCS_BONUS), $(SRCS_SO_LONG_BONUS:.c=.o))
+
 OBJS = $(addprefix $(DIR_BUILD), $(patsubst %.c,%.o,$(SRCS)))
+
+OBJS_BONUS = $(addprefix $(DIR_BUILD), $(patsubst %.c,%.o,$(SRCS_BONUS)))
 
 Black = \e[1;30m
 Red = \e[1;31m
@@ -57,8 +65,16 @@ End = \e[1;0m
 all :	$(NAME)
 		@echo "$(Green)__________$(NAME) OK____________$(End)"
 
+bonus : $(LIBFT) $(MLX) start $(OBJS_BONUS)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS_BONUS) -L $(LIBFT_DIR) -lft -L $(MLX_DIR) -lmlx -lm -lbsd -lX11 -lXext
+	@echo "$(Green)MAKE\033[5C->\033[5C$@$(End)"
+
+
 $(LIBFT) :
 	@make -sC $(LIBFT_DIR)
+
+$(MLX) :
+	@make -sC $(MLX_DIR)
 
 $(DIR_BUILD)% :
 	@mkdir -p $@
@@ -67,11 +83,16 @@ $(DIR_BUILD)% :
 .SECONDEXPANSION:
 
 
-$(NAME) :$(LIBFT) start $(OBJS)
+$(NAME) :$(LIBFT) $(MLX) start $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L $(LIBFT_DIR) -lft -L $(MLX_DIR) -lmlx -lm -lbsd -lX11 -lXext
 	@echo "$(Green)MAKE\033[5C->\033[5C$@$(End)"
 
 $(OBJS) : $(DIR_BUILD)%.o:%.c | $$(@D)/
+		@mkdir -p $(DIR_BUILD)
+		@echo "$(Cyan)BUILDING\033[5C->\033[5C$<$(End)"
+		@${CC} $(CFLAGS) -D BUFFER_SIZE=$(BUFFER) -I $(DIR_HEADERS) -I $(LIBFT_DIR) -I $(MLX_DIR) -c $< -o $@
+
+$(OBJS_BONUS) : $(DIR_BUILD)%.o:%.c | $$(@D)/
 		@mkdir -p $(DIR_BUILD)
 		@echo "$(Cyan)BUILDING\033[5C->\033[5C$<$(End)"
 		@${CC} $(CFLAGS) -D BUFFER_SIZE=$(BUFFER) -I $(DIR_HEADERS) -I $(LIBFT_DIR) -I $(MLX_DIR) -c $< -o $@
@@ -88,6 +109,7 @@ clean :
 
 fclean :
 	@make fclean -sC $(LIBFT_DIR)
+	@make clean -sC $(MLX_DIR)
 	@rm -rf $(NAME)
 	@rm -rf $(DIR_BUILD)
 	@echo "$(Red)REMOVE SO_LONG\033[3C->\033[5C$(DIR_BUILD)$(End)"
