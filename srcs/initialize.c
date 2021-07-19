@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 01:47:17 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/09 16:36:20 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 15:22:37 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	images_set(t_data *data, t_images *imgs)
 			&imgs->e.with, &imgs->e.height);
 	if (!data->imgs.w.img || !data->imgs.s.img || !data->imgs.p.img
 		|| !data->imgs.c.img || !data->imgs.e.img)
-		exit(my_error(close_mlx(data, 0), NULL));
+		exit(my_error(close_mlx(data, 8), NULL));
 	get_addr(imgs);
 }
 

@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 16:33:49 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/10 00:20:55 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 15:32:20 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,23 @@ int	my_error(int error, char *str)
 	if (error == 0)
 		return (EXIT_SUCCESS);
 	if (error == 1)
-		printf("ERROR\nArgument : ./so_long filename.ber\n");
+		ft_printf("ERROR\nArgument : ./so_long filename.ber\n");
 	if (error == 2)
-		printf("ERROR\nopen_file : File must be in %s\n", str);
+		ft_printf("ERROR\nopen_file : File must be in %s\n", str);
 	if (error == 3)
-		printf("ERROR\nopen \"%s\" : %s", str, strerror(errno));
+		ft_printf("ERROR\nopen \"%s\" : %s", str, strerror(errno));
 	if (error == 4)
-		printf("ERROR\nmap : closed/surrounded by walls\n");
+		ft_printf("ERROR\nmap : closed/surrounded by walls\n");
 	if (error == 5)
-		printf("ERROR\nmap : only walls (1), free spaces (0), " \
+		ft_printf("ERROR\nmap : only walls (1), free spaces (0), " \
 		"one player (P), exit(s) (E) and collectible(s) (C)\n");
 	if (error == 6)
 		ft_printf("ERROR\nmap : rectangular\n");
 	if (error == 7)
-		printf("ERROR\nmap : to long\n");
+		ft_printf("ERROR\nmap : to long\n");
+	if (error == 8)
+		ft_printf("ERROR\nimage : not found\n");
 	if (error == 99)
-		printf("%s\n", str);
+		ft_printf("%s\n", str);
 	return (EXIT_FAILURE);
 }

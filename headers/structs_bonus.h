@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 22:05:32 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/10 00:30:10 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 14:04:21 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_components
 	int	p;
 	int	c;
 	int	e;
+	int	en;
 }				t_components;
 
 typedef struct s_map
@@ -64,6 +65,7 @@ typedef struct s_data
 	int				heigth;
 	int				moves;
 	t_pos			perso;
+	t_pos			*en;
 	t_map			map;
 	t_components	comps;
 	t_images		imgs;

@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 22:43:04 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/10 00:16:39 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 15:31:04 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,13 @@ int	map_component(t_data *data, int y)
 			data->perso.y = y;
 			data->comps.p++;
 		}
+		else if (data->map.tab[y][x] == 'N')
+			data->comps.en++;
 		else if (data->map.tab[y][x] == 'C')
 			data->comps.c++;
 		else if (data->map.tab[y][x] == 'E')
 			data->comps.e++;
-		else if (!ft_strrchr("PCE10", data->map.tab[y][x]))
+		else if (!ft_strrchr("PCEN10", data->map.tab[y][x]))
 			return (FALSE);
 		x++;
 	}
@@ -113,6 +115,7 @@ int	map_check(t_data *data)
 			close_map(&data->map, 5, 0);
 		y++;
 	}
+	enemie_pos(data);
 	if (data->comps.p != 1 || data->comps.c == 0 || data->comps.e == 0)
 		close_map(&data->map, 5, 0);
 	return (TRUE);

@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 16:35:36 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/09 14:17:05 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 14:23:44 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	close_map(t_map *map, int error, char *str)
 	exit(my_error(error, str));
 }
 
-int	close_mlx(t_data *data, int error)
+void	close_img(t_data *data)
 {
 	if (data->imgs.w.img)
 		mlx_destroy_image(data->mlx, data->imgs.w.img);
@@ -46,11 +46,19 @@ int	close_mlx(t_data *data, int error)
 		mlx_destroy_image(data->mlx, data->imgs.c.img);
 	if (data->imgs.e.img)
 		mlx_destroy_image(data->mlx, data->imgs.e.img);
+	if (data->imgs.en.img)
+		mlx_destroy_image(data->mlx, data->imgs.en.img);
 	if (data->imgs.bg.img)
 		mlx_destroy_image(data->mlx, data->imgs.bg.img);
 	if (data->win)
 		mlx_destroy_window(data->mlx, data->win);
-	printf("close\n");
+}
+
+int	close_mlx(t_data *data, int error)
+{
+	close_img(data);
+	if (data->en)
+		free(data->en);
 	if (data->mlx)
 	{
 		mlx_destroy_display(data->mlx);

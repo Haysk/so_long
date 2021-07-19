@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 22:05:46 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/09 16:35:41 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 15:26:29 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	move_up(t_data *data)
 	&& data->comps.c != 0))
 		return (0);
 	if (data->map.tab[data->perso.y - 1][data->perso.x] == 'E')
-		exit(my_error(close_mlx(data, 0), NULL));
+		exit(my_error(close_mlx(data, 99), "WIN"));
 	if (data->map.tab[data->perso.y - 1][data->perso.x] == 'C')
 		data->comps.c -= 1;
 	data->map.tab[data->perso.y - 1][data->perso.x]
@@ -36,7 +36,7 @@ int	move_down(t_data *data)
 	&& data->comps.c != 0))
 		return (0);
 	if (data->map.tab[data->perso.y + 1][data->perso.x] == 'E')
-		exit(my_error(close_mlx(data, 0), NULL));
+		exit(my_error(close_mlx(data, 99), "WIN"));
 	if (data->map.tab[data->perso.y + 1][data->perso.x] == 'C')
 		data->comps.c -= 1;
 	data->map.tab[data->perso.y + 1][data->perso.x]
@@ -53,7 +53,7 @@ int	move_left(t_data *data)
 	&& data->comps.c != 0))
 		return (0);
 	if (data->map.tab[data->perso.y][data->perso.x - 1] == 'E')
-		exit(my_error(close_mlx(data, 0), NULL));
+		exit(my_error(close_mlx(data, 99), "WIN"));
 	if (data->map.tab[data->perso.y][data->perso.x - 1] == 'C')
 		data->comps.c -= 1;
 	data->map.tab[data->perso.y][data->perso.x - 1]
@@ -70,7 +70,7 @@ int	move_right(t_data *data)
 	&& data->comps.c != 0))
 		return (0);
 	if (data->map.tab[data->perso.y][data->perso.x + 1] == 'E')
-		exit(my_error(close_mlx(data, 0), NULL));
+		exit(my_error(close_mlx(data, 99), "WIN"));
 	if (data->map.tab[data->perso.y][data->perso.x + 1] == 'C')
 		data->comps.c -= 1;
 	data->map.tab[data->perso.y][data->perso.x + 1]

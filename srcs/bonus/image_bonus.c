@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 01:47:17 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/09 16:32:34 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 14:50:03 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	img_to_bg(t_image *img, t_image *bg, t_pos pos, int fram)
 	while (i < img->height)
 	{
 		j = 0;
-		while (j <	50)
+		while (j <=	50)
 		{
 			if (img->addr[i * img->line_length / 4 + (j + fram)] > 0)
 				bg->addr[((i + pos.y * 50) * bg->line_length) / 4 + (j + pos.x * 50)]
@@ -41,7 +41,7 @@ void	anim(t_image *img, t_image *bg, t_pos pos)
 			img->anim += 50;
 		img->time += 1;
 	}
-	else if (img->time == 9)
+	else if (img->time == 20)
 	{
 		if (img->anim >= img->line_length / 4)
 			img->anim = 0;
@@ -67,6 +67,8 @@ int	set_bg(t_data *data)
 				img_to_bg(&data->imgs.s, &data->imgs.bg, pos, 0);
 			if (data->map.tab[pos.y][pos.x] == 'P')
 				anim(&data->imgs.p, &data->imgs.bg, pos);
+			else if (data->map.tab[pos.y][pos.x] == 'N')
+				anim(&data->imgs.en, &data->imgs.bg, pos);
 			else if (data->map.tab[pos.y][pos.x] == 'C')
 				anim(&data->imgs.c, &data->imgs.bg, pos);
 			else if (data->map.tab[pos.y][pos.x] == 'E')

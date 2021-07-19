@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 19:31:37 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/09 14:18:27 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 14:06:56 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		set_bg(t_data *data);
 void	map_len(char *file, t_map *map);
 int		map_set(t_map *map, char *file);
 int		map_check(t_data *data);
-int		add_comp(t_pos *pos, int x, int y);
+void	enemie_pos(t_data *data);
 void	img_to_bg(t_image *img, t_image *bg, t_pos pos, int fram);
 int		start(t_data *data);
 int		move_up(t_data *data);
