@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 16:35:36 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/19 14:23:44 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 18:54:11 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int	free_tab(char **tab)
 	return (TRUE);
 }
 
-void	close_map(t_map *map, int error, char *str)
+void	close_map(t_map *map, int error)
 {
 	free_tab(map->tab);
-	exit(my_error(error, str));
+	exit(my_error(error, 0));
 }
 
 void	close_img(t_data *data)

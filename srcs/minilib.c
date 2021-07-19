@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:20:38 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/09 02:01:17 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 19:32:01 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ int	keypress(int key, t_data *data)
 
 	move = 0;
 	if (key == 119)
-		move = move_up(data);
+		move = move_perso(data, 0, -1);
 	else if (key == 115)
-		move = move_down(data);
+		move = move_perso(data, 0, 1);
 	else if (key == 97)
-		move = move_left(data);
+		move = move_perso(data, -1, 0);
 	else if (key == 100)
-		move = move_right(data);
+		move = move_perso(data, 1, 0);
 	else if (key == 65307)
-		exit(my_error(close_mlx(data, 0), NULL));
+		exit(my_error(close_mlx(data, 99), "CLOSE"));
 	if (move == 1)
 	{
 		display_map(data);
@@ -56,7 +56,7 @@ int	keypress(int key, t_data *data)
 
 int	close_so_long(t_data *data)
 {
-	exit(my_error(close_mlx(data, 0), NULL));
+	exit(my_error(close_mlx(data, 99), "CLOSE"));
 }
 
 int	start(t_data *data)
@@ -65,8 +65,8 @@ int	start(t_data *data)
 	data->win = window_set(data);
 	images_set(data, &data->imgs);
 	display_map(data);
-	mlx_hook(data->win, 33, 1L << 5, close_so_long, data);
-	mlx_hook(data->win, 2, 1L << 0, keypress, data);
-	mlx_loop(data->mlx);
+	// mlx_hook(data->win, 33, 1L << 5, close_so_long, data);
+	// mlx_hook(data->win, 2, 1L << 0, keypress, data);
+	// mlx_loop(data->mlx);
 	return (TRUE);
 }

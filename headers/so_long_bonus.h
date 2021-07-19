@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 19:31:37 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/19 15:41:21 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 19:06:33 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,11 @@ int		map_check(t_data *data);
 void	enemie_pos(t_data *data);
 void	img_to_bg(t_image *img, t_image *bg, t_pos pos, int fram);
 int		start(t_data *data);
-int		move_up(t_data *data);
-int		move_down(t_data *data);
-int		move_left(t_data *data);
-int		move_right(t_data *data);
+int		move_perso(t_data *data, int x, int y);
+void	move_enemies(t_data *data);
 int		my_error(int error, char *str);
 int		free_tab(char **tab);
-void	close_map(t_map *map, int error, char *str);
+void	close_map(t_map *map, int error);
 int		close_mlx(t_data *data, int error);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 19:32:33 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/19 15:31:21 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 18:48:01 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	main(int argc, char **argv)
 		data_init(&data);
 		get_map(argv[1], &data);
 		start(&data);
-		close_mlx(&data, 0);
-		return (EXIT_SUCCESS);
+		;
+		return (close_mlx(&data, 0));
 	}
 	return (my_error(1, NULL));
 }

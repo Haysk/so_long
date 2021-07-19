@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 19:32:33 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/09 16:35:17 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 19:19:32 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	get_map(char *file, t_data *data)
 int	main(int argc, char **argv)
 {
 	t_data	data;
-
+	
 	if (argc == 2)
 	{	
 		data_init(&data);

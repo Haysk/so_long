@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 01:47:17 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/19 15:40:30 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 19:30:22 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void	*window_set(t_data *data)
 	int	screenx;
 	int	screeny;
 
+	screenx = 0;
+	screeny = 0;
 	mlx_get_screen_size(data->mlx, &screenx, &screeny);
 	if (screenx < data->map.lenx * 50 || screeny < data->map.leny * 50)
 		exit(my_error(close_mlx(data, 7), NULL));
@@ -99,7 +101,7 @@ void	enemie_pos(t_data *data)
 	z = 0;
 	if (data->comps.en == 0)
 		return ;
-	data->en = malloc(sizeof(t_pos) * (data->comps.en + 1));
+	data->en = malloc(sizeof(t_enemie) * (data->comps.en + 1));
 	while (data->map.tab[y])
 	{
 		x = 0;
@@ -109,6 +111,7 @@ void	enemie_pos(t_data *data)
 			{
 				data->en[z].x = x;
 				data->en[z].y = y;
+				data->en[z].t = 1;
 				z++;
 			}
 			x++;

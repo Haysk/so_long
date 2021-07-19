@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 22:43:04 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/10 00:15:50 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 19:00:17 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,12 @@ int	map_check(t_data *data)
 	while (y < data->map.leny)
 	{
 		if (!map_borders(data->map, y))
-			close_map(&data->map, 4, 0);
+			close_map(&data->map, 4);
 		if (!map_component(data, y))
-			close_map(&data->map, 5, 0);
+			close_map(&data->map, 5);
 		y++;
 	}
 	if (data->comps.p != 1 || data->comps.c == 0 || data->comps.e == 0)
-		close_map(&data->map, 5, 0);
+		close_map(&data->map, 5);
 	return (TRUE);
 }

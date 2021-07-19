@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 16:33:49 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/19 15:32:10 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 19:02:55 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	my_error(int error, char *str)
 	if (error == 2)
 		ft_printf("ERROR\nopen_file : File must be in %s\n", str);
 	if (error == 3)
-		ft_printf("ERROR\nopen \"%s\" : %s", str, strerror(errno));
+		ft_printf("ERROR\nopen \"%s\" : not found", str);
 	if (error == 4)
 		ft_printf("ERROR\nmap : closed/surrounded by walls\n");
 	if (error == 5)
@@ -34,6 +34,9 @@ int	my_error(int error, char *str)
 	if (error == 8)
 		ft_printf("ERROR\nimage : not found\n");
 	if (error == 99)
+	{
 		ft_printf("%s\n", str);
+		return (EXIT_SUCCESS);
+	}
 	return (EXIT_FAILURE);
 }

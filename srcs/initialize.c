@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 01:47:17 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/19 15:22:37 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 19:34:26 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	data_init(t_data *data)
 	data->win = NULL;
 	data->width = 0;
 	data->heigth = 0;
+	data->perso.x = 0;
+	data->perso.y = 0;
 	data->moves = 0;
 	data->map.lenx = 0;
 	data->map.leny = 0;
@@ -70,6 +72,8 @@ void	*window_set(t_data *data)
 	int	screenx;
 	int	screeny;
 
+	screenx = 0;
+	screeny = 0;
 	mlx_get_screen_size(data->mlx, &screenx, &screeny);
 	if (screenx < data->map.lenx * 50 || screeny < data->map.leny * 50)
 		exit(my_error(close_mlx(data, 7), NULL));
