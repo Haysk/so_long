@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:20:38 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/19 19:32:01 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 20:10:18 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ int	start(t_data *data)
 	data->win = window_set(data);
 	images_set(data, &data->imgs);
 	display_map(data);
-	// mlx_hook(data->win, 33, 1L << 5, close_so_long, data);
-	// mlx_hook(data->win, 2, 1L << 0, keypress, data);
-	// mlx_loop(data->mlx);
+	mlx_hook(data->win, 33, 1L << 5, close_so_long, data);
+	mlx_hook(data->win, 2, 1L << 0, keypress, data);
+	mlx_loop(data->mlx);
 	return (TRUE);
 }
