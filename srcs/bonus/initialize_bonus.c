@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 01:47:17 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/19 14:53:03 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 15:40:30 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	get_addr(t_images *imgs)
 			&imgs->e.bits_per_pixel, &imgs->e.line_length, &imgs->e.endian);
 	imgs->en.addr = (int *)mlx_get_data_addr(imgs->en.img,
 			&imgs->en.bits_per_pixel, &imgs->en.line_length, &imgs->en.endian);
-	
 }
 
 void	images_set(t_data *data, t_images *imgs)
@@ -76,6 +75,7 @@ void	images_set(t_data *data, t_images *imgs)
 		exit(my_error(close_mlx(data, 8), NULL));
 	get_addr(imgs);
 }
+
 void	*window_set(t_data *data)
 {
 	int	screenx;
@@ -93,12 +93,12 @@ void	enemie_pos(t_data *data)
 {
 	int	x;
 	int	y;
-	int z;
+	int	z;
 
 	y = 0;
 	z = 0;
 	if (data->comps.en == 0)
-		return;
+		return ;
 	data->en = malloc(sizeof(t_pos) * (data->comps.en + 1));
 	while (data->map.tab[y])
 	{

@@ -6,12 +6,12 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 22:05:32 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/19 14:04:21 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 15:41:44 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCTS_H
-# define STRUCTS_H
+#ifndef STRUCTS_BONUS_H
+# define STRUCTS_BONUS_H
 
 typedef struct s_image {
 	void	*img;
@@ -54,7 +54,7 @@ typedef struct s_images
 	t_image	p;
 	t_image	c;
 	t_image	e;
-	t_image	en; //enemie
+	t_image	en;
 }				t_images;
 
 typedef struct s_data

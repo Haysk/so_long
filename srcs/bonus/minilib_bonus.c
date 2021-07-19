@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:20:38 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/09 15:50:43 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 15:40:49 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	display_map(t_data *data)
 {	
-	char *str;
+	char	*str;
 
 	str = ft_itoa(data->moves);
 	if (data->imgs.bg.img)

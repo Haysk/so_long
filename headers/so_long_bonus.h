@@ -6,12 +6,12 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 19:31:37 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/07/19 14:06:56 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/07/19 15:41:21 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include <mlx.h>
 # include "utils.h"
